@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es" class="dark">
+<html lang="es" class="dark scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cevichería Puerto Marino</title>
+  <title>Cevichería Puerto Marino - Carta Digital</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script>
@@ -18,89 +18,110 @@
       }
     }
   </script>
+  <style>
+    .scrollbar-none::-webkit-scrollbar { display: none; }
+    .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
 </head>
-<body class="bg-[#0b132b] text-slate-100 font-sans min-h-screen flex flex-col justify-between">
+<body class="bg-[#0b132b] text-slate-100 font-sans min-h-screen flex flex-col justify-between selection:bg-[#00b4d8] selection:text-slate-900">
 
   <!-- NAVBAR STICKY -->
-  <nav class="sticky top-0 z-50 bg-[#0b132b]/95 backdrop-blur-md border-b border-slate-800 px-4 py-3 shadow-lg">
-    <div class="max-w-6xl mx-auto flex justify-between items-center">
-      <div class="flex items-center gap-3">
-        <img id="ui-logo" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=100" alt="Logo" class="w-10 h-10 rounded-full object-cover border-2 border-[#00b4d8]">
+  <nav class="sticky top-0 z-50 bg-[#0b132b]/95 backdrop-blur-md border-b border-slate-800/80 px-4 py-3 shadow-2xl">
+    <div class="max-w-6xl mx-auto flex justify-between items-center gap-2">
+      <!-- Logo & Nombre -->
+      <a href="#" class="flex items-center gap-3 group">
+        <img id="ui-logo" src="./logo.jpg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=120';" alt="Logo" class="w-10 h-10 rounded-full object-cover border-2 border-[#00b4d8] group-hover:scale-105 transition duration-300">
         <div>
-          <h1 id="ui-nombre-negocio" class="font-bold text-lg text-white leading-tight">Cevichería Puerto Marino</h1>
+          <h1 id="ui-nombre-negocio" class="font-bold text-base sm:text-lg text-white leading-tight group-hover:text-[#00b4d8] transition">Cevichería Puerto Marino</h1>
           <span id="ui-badge-estado" class="inline-block text-[10px] px-2 py-0.5 rounded-full font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Abierto</span>
         </div>
+      </a>
+
+      <!-- Menú de Navegación de Escritorio -->
+      <div class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
+        <a href="#catalogo-section" class="hover:text-[#00b4d8] transition flex items-center gap-1.5"><i class="fas fa-utensils text-xs text-[#00b4d8]"></i> Menú</a>
+        <a href="#ubicacion-section" class="hover:text-[#00b4d8] transition flex items-center gap-1.5"><i class="fas fa-map-marker-alt text-xs text-[#ffb703]"></i> Ubicación</a>
       </div>
-      <a id="ui-btn-header-wsp" href="#" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-xl font-medium text-sm transition flex items-center gap-2 shadow-lg shadow-emerald-900/20">
-        <i class="fab fa-whatsapp text-lg"></i>
+
+      <!-- Botón Pedir por WhatsApp -->
+      <a id="ui-btn-header-wsp" href="#" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3.5 py-2 rounded-xl font-semibold text-xs sm:text-sm transition flex items-center gap-2 shadow-lg shadow-emerald-950/30">
+        <i class="fab fa-whatsapp text-base sm:text-lg"></i>
         <span class="hidden sm:inline">Pedir por WhatsApp</span>
       </a>
     </div>
   </nav>
 
   <!-- HERO SECTION -->
-  <header id="ui-hero-bg" class="relative bg-slate-900 py-20 px-4 text-center overflow-hidden border-b border-slate-800 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1535399831218-d5bd36d1a6b3?w=1200');">
-    <div class="absolute inset-0 bg-[#0b132b]/80 z-0"></div>
+  <header id="ui-hero-bg" class="relative bg-slate-900 py-16 sm:py-24 px-4 text-center overflow-hidden border-b border-slate-800/80 bg-cover bg-center" style="background-image: url('./banner.jpg'), url('https://images.unsplash.com/photo-1535399831218-d5bd36d1a6b3?w=1400');">
+    <div class="absolute inset-0 bg-gradient-to-b from-[#0b132b]/85 via-[#0b132b]/80 to-[#0b132b] z-0"></div>
     <div class="relative z-10 max-w-3xl mx-auto space-y-4">
-      <span class="text-[#00b4d8] text-xs font-bold uppercase tracking-widest bg-[#00b4d8]/10 px-3 py-1 rounded-full border border-[#00b4d8]/20">Sabor Marino Premium</span>
-      <h2 id="ui-hero-titulo" class="text-3xl sm:text-5xl font-black text-white tracking-tight">La Mejor Experiencia Acevichada</h2>
-      <p id="ui-horario" class="text-slate-400 text-sm sm:text-base">Lun - Dom: 10:00 AM - 6:00 PM</p>
-      <div id="ui-modalidades" class="flex justify-center gap-3 pt-2 text-xs font-semibold text-slate-300">
-        <span class="bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700/50"><i class="fas fa-store text-[#ffb703] mr-1"></i> Presencial</span>
-        <span class="bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700/50"><i class="fas fa-motorcycle text-[#00b4d8] mr-1"></i> Delivery</span>
+      <span class="inline-block text-[#00b4d8] text-[11px] sm:text-xs font-extrabold uppercase tracking-widest bg-[#00b4d8]/10 px-3.5 py-1 rounded-full border border-[#00b4d8]/20 backdrop-blur-sm">Sabor Marino Premium</span>
+      <h2 id="ui-hero-titulo" class="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">El Mejor Sabor en Cevichería Puerto Marino</h2>
+      <p id="ui-horario" class="text-slate-300 text-xs sm:text-sm font-medium"><i class="far fa-clock text-[#ffb703] mr-1"></i> Lun - Dom: 10:00 AM - 6:00 PM</p>
+      
+      <div id="ui-modalidades" class="flex justify-center items-center gap-3 pt-2 text-xs font-semibold text-slate-300">
+        <span class="bg-slate-800/90 backdrop-blur-sm px-3.5 py-1.5 rounded-xl border border-slate-700/60 flex items-center gap-1.5"><i class="fas fa-store text-[#ffb703]"></i> Presencial</span>
+        <span class="bg-slate-800/90 backdrop-blur-sm px-3.5 py-1.5 rounded-xl border border-slate-700/60 flex items-center gap-1.5"><i class="fas fa-motorcycle text-[#00b4d8]"></i> Delivery</span>
       </div>
     </div>
   </header>
 
   <!-- FILTROS DE CATEGORÍA -->
-  <section class="max-w-6xl mx-auto px-4 pt-8 w-full">
-    <div id="ui-categorias" class="flex gap-2 overflow-x-auto pb-2 scrollbar-none text-sm">
-      <button onclick="filtrar('Todos')" class="btn-cat bg-[#00b4d8] text-slate-900 font-bold px-4 py-2 rounded-xl whitespace-nowrap transition">Todos</button>
+  <section id="catalogo-section" class="max-w-6xl mx-auto px-4 pt-8 w-full scroll-mt-20">
+    <div class="flex items-center justify-between mb-4">
+      <h3 class="text-xl font-bold text-white flex items-center gap-2">
+        <i class="fas fa-book-open text-[#00b4d8] text-base"></i> Nuestra Carta
+      </h3>
+      <span class="text-xs text-slate-400">Selecciona una categoría</span>
+    </div>
+    <div id="ui-categorias" class="flex gap-2 overflow-x-auto pb-3 scrollbar-none text-xs sm:text-sm">
+      <button onclick="filtrar('Todos')" class="btn-cat bg-[#00b4d8] text-slate-900 font-bold px-4 py-2 rounded-xl whitespace-nowrap transition shadow-md">Todos</button>
     </div>
   </section>
 
   <!-- GRID DE CATÁLOGO / PLATOS -->
-  <main class="max-w-6xl mx-auto px-4 py-6 w-full flex-grow">
+  <main class="max-w-6xl mx-auto px-4 py-4 w-full flex-grow">
     <div id="ui-catalogo" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       <!-- Carga dinámica -->
     </div>
   </main>
 
   <!-- UBICACIÓN Y MAPA -->
-  <section class="bg-[#1c2541]/50 border-t border-slate-800 py-12 px-4 mt-8">
+  <section id="ubicacion-section" class="bg-[#1c2541]/40 border-t border-slate-800/80 py-12 px-4 mt-12 scroll-mt-20">
     <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
       <div class="space-y-4">
-        <h3 class="text-2xl font-bold text-white">Nuestra Ubicación</h3>
-        <p id="ui-direccion" class="text-slate-300 text-sm"><i class="fas fa-map-marker-alt text-[#ffb703] mr-2"></i>Av. La Marina 1450, Pueblo Libre, Lima</p>
+        <span class="text-[#ffb703] text-xs font-bold uppercase tracking-wider">Visítanos o Pide Delivery</span>
+        <h3 class="text-2xl sm:text-3xl font-black text-white">Nuestra Ubicación</h3>
+        <p id="ui-direccion" class="text-slate-300 text-sm leading-relaxed"><i class="fas fa-map-marker-alt text-[#ffb703] mr-2"></i>Av. La Marina 1450, Pueblo Libre, Lima</p>
         <p id="ui-delivery-info" class="text-slate-400 text-sm"><i class="fas fa-truck text-[#00b4d8] mr-2"></i>Costo de Delivery: S/ 7.00</p>
         <div class="flex gap-4 pt-2">
-          <a id="ui-link-maps" href="#" target="_blank" class="bg-slate-800 hover:bg-slate-700 text-white px-4 py-2 rounded-xl text-sm font-medium border border-slate-700 transition flex items-center gap-2">
-            <i class="fas fa-directions text-[#ffb703]"></i> Cómo llegar
+          <a id="ui-link-maps" href="#" target="_blank" class="bg-slate-800 hover:bg-slate-700 text-white px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold border border-slate-700/80 transition flex items-center gap-2 shadow-md">
+            <i class="fas fa-directions text-[#ffb703]"></i> Cómo llegar (Google Maps)
           </a>
         </div>
       </div>
-      <div class="rounded-2xl overflow-hidden border border-slate-700/50 shadow-xl h-64 bg-slate-800">
+      <div class="rounded-2xl overflow-hidden border border-slate-700/60 shadow-2xl h-64 bg-slate-800/80">
         <iframe id="ui-iframe-maps" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.636758457788!2d-77.075!3d-12.078!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDA0JzQ4LjgiUyA3N8KwMDQnMzAuMCJX!5e0!3m2!1ses!2spe!4v1600000000000!5m2!1ses!2spe" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
       </div>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="border-t border-slate-800 bg-[#0b132b] py-8 px-4 text-center text-xs text-slate-500 space-y-4">
-    <div class="flex justify-center gap-6 text-lg">
-      <a id="ui-fb" href="#" target="_blank" class="text-slate-400 hover:text-[#00b4d8]"><i class="fab fa-facebook"></i></a>
-      <a id="ui-ig" href="#" target="_blank" class="text-slate-400 hover:text-[#00b4d8]"><i class="fab fa-instagram"></i></a>
-      <a id="ui-tk" href="#" target="_blank" class="text-slate-400 hover:text-[#00b4d8]"><i class="fab fa-tiktok"></i></a>
+  <footer class="border-t border-slate-800/80 bg-[#0b132b] py-8 px-4 text-center text-xs text-slate-500 space-y-4">
+    <div class="flex justify-center gap-6 text-xl">
+      <a id="ui-fb" href="#" target="_blank" class="text-slate-400 hover:text-[#00b4d8] transition"><i class="fab fa-facebook"></i></a>
+      <a id="ui-ig" href="#" target="_blank" class="text-slate-400 hover:text-[#00b4d8] transition"><i class="fab fa-instagram"></i></a>
+      <a id="ui-tk" href="#" target="_blank" class="text-slate-400 hover:text-[#00b4d8] transition"><i class="fab fa-tiktok"></i></a>
     </div>
     <p>© 2026 Cevichería Puerto Marino. Todos los derechos reservados.</p>
   </footer>
 
   <!-- BOTÓN FLOTANTE WHATSAPP -->
-  <a id="ui-btn-float-wsp" href="#" target="_blank" class="fixed bottom-6 right-6 bg-emerald-500 text-white p-4 rounded-full shadow-2xl hover:scale-110 transition duration-300 z-50 flex items-center justify-center text-2xl">
+  <a id="ui-btn-float-wsp" href="#" target="_blank" aria-label="Contacto WhatsApp" class="fixed bottom-6 right-6 bg-emerald-500 hover:bg-emerald-400 text-white p-4 rounded-full shadow-2xl hover:scale-110 transition duration-300 z-50 flex items-center justify-center text-2xl">
     <i class="fab fa-whatsapp"></i>
   </a>
 
-  <!-- SCRIPT DE CONEXIÓN -->
+  <!-- SCRIPT DE CONEXIÓN CON APPS SCRIPT -->
   <script>
     const API_URL = "https://script.google.com/macros/s/AKfycbwmCBrhg62Betq01j2Xi5HcQ1Q5t0OF-qsmG1jt6OEKCQhX0BGLkvMFKjMx_T-QDiFp/exec";
 
@@ -114,8 +135,8 @@
         horario: "Lun - Dom: 10:00 AM - 6:00 PM",
         costo_delivery: "S/ 7.00",
         estado_local: "Abierto",
-        logo_url: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=100",
-        banner_url: "https://images.unsplash.com/photo-1535399831218-d5bd36d1a6b3?w=1200"
+        logo_url: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=120",
+        banner_url: "https://images.unsplash.com/photo-1535399831218-d5bd36d1a6b3?w=1400"
       },
       carta: []
     };
@@ -158,23 +179,33 @@
       document.getElementById("ui-hero-titulo").innerText = `El Mejor Sabor en ${nombre}`;
       document.getElementById("ui-direccion").innerHTML = `<i class="fas fa-map-marker-alt text-[#ffb703] mr-2"></i>${configGlobal.direccion || ''}`;
       document.getElementById("ui-delivery-info").innerHTML = `<i class="fas fa-truck text-[#00b4d8] mr-2"></i>Delivery: ${configGlobal.costo_delivery || 'Consultar'}`;
-      document.getElementById("ui-horario").innerText = configGlobal.horario || '';
+      document.getElementById("ui-horario").innerText = `Lun - Dom: ${configGlobal.horario || '10:00 AM - 6:00 PM'}`;
       document.getElementById("ui-link-maps").href = configGlobal.google_maps_url || '#';
 
-      // Logo y Banner Dinámicos desde Config
-      if (configGlobal.logo_url) {
+      // Manejo inteligente de Logo y Banner (Respaldo en 3 capas)
+      if (configGlobal.logo_url && !configGlobal.logo_url.includes('./logo.jpg')) {
         document.getElementById("ui-logo").src = configGlobal.logo_url;
       }
-      if (configGlobal.banner_url) {
+      if (configGlobal.banner_url && !configGlobal.banner_url.includes('./banner.jpg')) {
         document.getElementById("ui-hero-bg").style.backgroundImage = `url('${configGlobal.banner_url}')`;
       }
 
+      // Estado dinámico del local (Abierto / Cerrado)
       const badge = document.getElementById("ui-badge-estado");
-      const estado = configGlobal.estado_local || "Abierto";
+      const estado = (configGlobal.estado_local || "Abierto").trim();
       badge.innerText = estado;
+      
+      if (estado.toLowerCase() === 'cerrado') {
+        badge.className = "inline-block text-[10px] px-2 py-0.5 rounded-full font-semibold bg-red-500/20 text-red-400 border border-red-500/30";
+      } else if (estado.toLowerCase().includes('temporal')) {
+        badge.className = "inline-block text-[10px] px-2 py-0.5 rounded-full font-semibold bg-amber-500/20 text-amber-400 border border-amber-500/30";
+      } else {
+        badge.className = "inline-block text-[10px] px-2 py-0.5 rounded-full font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30";
+      }
 
+      // Enlaces de WhatsApp
       const wspNum = configGlobal.whatsapp || "";
-      const msgDefault = encodeURIComponent(configGlobal.whatsapp_mensaje || "Hola, deseo hacer un pedido");
+      const msgDefault = encodeURIComponent(configGlobal.whatsapp_mensaje || "¡Hola! Vengo de la web y deseo consultar la carta.");
       const wspLink = `https://wa.me/${wspNum}?text=${msgDefault}`;
       
       document.getElementById("ui-btn-header-wsp").href = wspLink;
@@ -183,10 +214,11 @@
       document.getElementById("ui-ig").href = configGlobal.instagram || "#";
       document.getElementById("ui-tk").href = configGlobal.tiktok || "#";
 
+      // Filtros de Categorías
       const categorias = ["Todos", ...new Set(itemsGlobales.map(item => item.categoria))];
       const contCat = document.getElementById("ui-categorias");
       contCat.innerHTML = categorias.map((cat, idx) => `
-        <button onclick="filtrar('${cat}')" class="btn-cat ${idx === 0 ? 'bg-[#00b4d8] text-slate-900' : 'bg-slate-800 text-slate-300'} font-bold px-4 py-2 rounded-xl whitespace-nowrap transition hover:bg-[#00b4d8] hover:text-slate-900">${cat}</button>
+        <button onclick="filtrar('${cat}')" class="btn-cat ${idx === 0 ? 'bg-[#00b4d8] text-slate-900 shadow-md font-bold' : 'bg-slate-800 text-slate-300'} font-semibold px-4 py-2 rounded-xl whitespace-nowrap transition hover:bg-[#00b4d8] hover:text-slate-900">${cat}</button>
       `).join('');
 
       renderizarPlatos(itemsGlobales);
@@ -197,27 +229,27 @@
       const wspNum = configGlobal.whatsapp || "";
 
       if(items.length === 0) {
-        catalogo.innerHTML = `<p class="col-span-full text-center text-slate-500 py-8">No se encontraron productos en esta categoría.</p>`;
+        catalogo.innerHTML = `<p class="col-span-full text-center text-slate-500 py-12 font-medium">No se encontraron platillos disponibles en esta categoría.</p>`;
         return;
       }
 
       catalogo.innerHTML = items.map(item => {
-        // Mensaje dinámico enviando el nombre y precio exacto del plato al WhatsApp
-        const mensajePlato = encodeURIComponent(`¡Hola! Deseo pedir el siguiente plato:\n\n🍽️ *${item.nombre}*\n💰 Precio: S/ ${item.precio}\n\n¿Está disponible?`);
+        // Mensaje limpio y estructurado enviando el plato y precio a WhatsApp
+        const mensajePlato = encodeURIComponent(`¡Hola! Deseo realizar un pedido:\n\n🍽️ *Plato:* ${item.nombre}\n🏷️ *Categoría:* ${item.categoria}\n💰 *Precio:* S/ ${item.precio}\n\n¿Tienen disponibilidad para delivery / pedido?`);
         const linkPedido = `https://wa.me/${wspNum}?text=${mensajePlato}`;
-        const badgeTag = item.etiqueta ? `<span class="absolute top-3 left-3 bg-[#ffb703] text-slate-900 text-[10px] font-black uppercase px-2 py-1 rounded-md shadow-md">${item.etiqueta}</span>` : '';
+        const badgeTag = item.etiqueta ? `<span class="absolute top-3 left-3 bg-[#ffb703] text-slate-900 text-[10px] font-black uppercase px-2.5 py-1 rounded-md shadow-lg tracking-wider">${item.etiqueta}</span>` : '';
 
         return `
-          <div class="bg-[#1c2541] rounded-2xl overflow-hidden border border-slate-700/50 flex flex-col justify-between hover:border-[#00b4d8]/50 transition duration-300 shadow-xl group">
-            <div class="relative h-48 overflow-hidden bg-slate-800">
-              <img src="${item.imagen}" alt="${item.nombre}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
+          <div class="bg-[#1c2541] rounded-2xl overflow-hidden border border-slate-700/60 flex flex-col justify-between hover:border-[#00b4d8]/60 transition duration-300 shadow-xl group">
+            <div class="relative h-48 sm:h-52 overflow-hidden bg-slate-800">
+              <img src="${item.imagen}" alt="${item.nombre}" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1535399831218-d5bd36d1a6b3?w=600';" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
               ${badgeTag}
             </div>
             <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
               <div>
-                <div class="flex justify-between items-start gap-2 mb-1">
-                  <h3 class="font-bold text-lg text-white group-hover:text-[#00b4d8] transition">${item.nombre}</h3>
-                  <span class="text-lg font-black text-[#00b4d8] bg-[#00b4d8]/10 px-2 py-0.5 rounded-lg border border-[#00b4d8]/20">S/${item.precio}</span>
+                <div class="flex justify-between items-start gap-2 mb-2">
+                  <h4 class="font-bold text-base sm:text-lg text-white group-hover:text-[#00b4d8] transition leading-snug">${item.nombre}</h4>
+                  <span class="text-base font-black text-[#00b4d8] bg-[#00b4d8]/10 px-2.5 py-0.5 rounded-lg border border-[#00b4d8]/20 whitespace-nowrap">S/ ${item.precio}</span>
                 </div>
                 <p class="text-slate-400 text-xs line-clamp-2 leading-relaxed">${item.descripcion}</p>
               </div>
@@ -234,9 +266,9 @@
       const botones = document.querySelectorAll('.btn-cat');
       botones.forEach(btn => {
         if(btn.innerText === categoria) {
-          btn.className = "btn-cat bg-[#00b4d8] text-slate-900 font-bold px-4 py-2 rounded-xl whitespace-nowrap transition";
+          btn.className = "btn-cat bg-[#00b4d8] text-slate-900 font-bold px-4 py-2 rounded-xl whitespace-nowrap transition shadow-md";
         } else {
-          btn.className = "btn-cat bg-slate-800 text-slate-300 font-bold px-4 py-2 rounded-xl whitespace-nowrap transition hover:bg-[#00b4d8] hover:text-slate-900";
+          btn.className = "btn-cat bg-slate-800 text-slate-300 font-semibold px-4 py-2 rounded-xl whitespace-nowrap transition hover:bg-[#00b4d8] hover:text-slate-900";
         }
       });
 
