@@ -102,7 +102,6 @@
 
   <!-- SCRIPT DE CONEXIÓN -->
   <script>
-    // ⚠️ REEMPLAZA ESTA URL CON TU ENLACE DE APPS SCRIPT QUE TERMINA EN /exec
     const API_URL = "https://script.google.com/macros/s/AKfycbwmCBrhg62Betq01j2Xi5HcQ1Q5t0OF-qsmG1jt6OEKCQhX0BGLkvMFKjMx_T-QDiFp/exec";
 
     const fallbackData = {
@@ -134,16 +133,23 @@
         return;
       }
 
-      fetch(API_URL)
-        .then(res => res.json())
+      // Usamos mode: 'cors' y redirect: 'follow' para asegurar la lectura correcta desde GitHub Pages
+      fetch(API_URL, { method: 'GET', mode: 'cors', redirect: 'follow' })
+        .then(res => {
+          if (!res.ok) throw new Error('Error en la red');
+          return res.json();
+        })
         .then(data => {
+          console.log("Datos recibidos de Google Sheets:", data);
           if (data && data.carta && data.carta.length > 0) {
             renderizarTodo(data);
           } else {
+            console.warn("La API respondió pero la carta está vacía. Usando respaldo.");
             renderizarTodo(fallbackData);
           }
         })
-        .catch(() => {
+        .catch(err => {
+          console.error("Fallo el fetch con la API, usando respaldo local:", err);
           renderizarTodo(fallbackData);
         });
     }
